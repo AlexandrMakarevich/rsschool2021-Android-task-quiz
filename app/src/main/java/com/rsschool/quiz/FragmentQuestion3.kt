@@ -82,6 +82,11 @@ class FragmentQuestion3 : Fragment() {
             }
         }
 
+        val toolbar = binding.toolbar
+        toolbar.setNavigationOnClickListener {
+            listener?.openFragmentQuestion2FromFragmentQuestion3(answer)
+        }
+
         return binding.root
     }
 

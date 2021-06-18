@@ -2,6 +2,7 @@ package com.rsschool.quiz
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,8 @@ import androidx.fragment.app.Fragment
 import com.rsschool.quiz.databinding.FragmentQuestion2Binding
 
 class FragmentQuestion2 : Fragment() {
+
+    val LOG = "MyLog"
 
     private var _binding: FragmentQuestion2Binding? = null
     private val binding get() = _binding!!
@@ -80,6 +83,10 @@ class FragmentQuestion2 : Fragment() {
             }
         }
 
+        val toolbar = binding.toolbar
+        toolbar.setNavigationOnClickListener {
+            listener?.openFragmentQuestion1FromFragmentQuestion2(answer)
+        }
 
         return binding.root
     }
