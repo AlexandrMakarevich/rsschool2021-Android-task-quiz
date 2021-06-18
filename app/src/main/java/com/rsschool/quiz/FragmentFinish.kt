@@ -45,7 +45,7 @@ class FragmentFinish : Fragment() {
 
 
         binding.shareButton.setOnClickListener {
-            listener?.shareFromFragmentFinish()
+            listener?.shareFromFragmentFinish(sum)
         }
 
         binding.backButton.setOnClickListener {
@@ -61,7 +61,7 @@ class FragmentFinish : Fragment() {
     }
 
     interface FragmentFinishInterface {
-        fun shareFromFragmentFinish()
+        fun shareFromFragmentFinish(sum: Int)
         fun closeFromFragmentFinish()
         fun repeateFromFragmentFinish()
     }
