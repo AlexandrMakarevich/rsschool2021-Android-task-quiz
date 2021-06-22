@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.*
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
@@ -32,94 +34,97 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun startFragmentQuestion1() {
-        val fragmentQuestion1 = FragmentQuestion1.newInstance(sharedPref.getString("CAPITAL", ""))
+        val fragmentQuestion1 = FragmentQuestion1.newInstance(sharedPref.getString(PrefNames.CAPITAL.name, ""))
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragmentQuestion1)
         transaction.commit()
-        window.setStatusBarColor(resources.getColor(R.color.deep_orange_100))
+        window.statusBarColor = resources.getColor(R.color.deep_orange_100)
     }
 
     override fun openFragmentQuestion2FromFragmentQuestion1(answer: String?) {
-        sharedPref.edit().putString("CAPITAL", answer).apply()
-        val fragmentQuestion2 = FragmentQuestion2.newInstance(sharedPref.getString("CHAMPION", ""))
+        sharedPref.edit().putString(PrefNames.CAPITAL.name, answer).apply()
+        val fragmentQuestion2 = FragmentQuestion2.newInstance(sharedPref.getString(PrefNames.CHAMPION.name, ""))
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragmentQuestion2)
         transaction.commit()
-        window.setStatusBarColor(resources.getColor(R.color.yellow_100))
+        window.statusBarColor = resources.getColor(R.color.yellow_100)
     }
 
     override fun openFragmentQuestion1FromFragmentQuestion2(answer: String?) {
-        sharedPref.edit().putString("CHAMPION", answer).apply()
-        val fragmentQuestion1 = FragmentQuestion1.newInstance(sharedPref.getString("CAPITAL", ""))
+        sharedPref.edit().putString(PrefNames.CHAMPION.name, answer).apply()
+        val fragmentQuestion1 = FragmentQuestion1.newInstance(sharedPref.getString(PrefNames.CAPITAL.name, ""))
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragmentQuestion1)
         transaction.commit()
-        window.setStatusBarColor(resources.getColor(R.color.deep_orange_100))
+        window.statusBarColor = resources.getColor(R.color.deep_orange_100)
     }
 
     override fun openFragmentQuestion3FromFragmentQuestion2(answer: String?) {
-        sharedPref.edit().putString("CHAMPION", answer).apply()
-        val fragmentQuestion3 = FragmentQuestion3.newInstance(sharedPref.getString("COLOR", ""))
+        sharedPref.edit().putString(PrefNames.CHAMPION.name, answer).apply()
+        val fragmentQuestion3 = FragmentQuestion3.newInstance(sharedPref.getString(PrefNames.COLOR.name, ""))
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragmentQuestion3)
         transaction.commit()
-        window.setStatusBarColor(resources.getColor(R.color.light_green_100))
+        window.statusBarColor = resources.getColor(R.color.light_green_100)
     }
 
     override fun openFragmentQuestion2FromFragmentQuestion3(answer: String?) {
-        sharedPref.edit().putString("COLOR", answer).apply()
-        val fragmentQuestion2 = FragmentQuestion2.newInstance(sharedPref.getString("CHAMPION", ""))
+        sharedPref.edit().putString(PrefNames.COLOR.name, answer).apply()
+        val fragmentQuestion2 = FragmentQuestion2.newInstance(sharedPref.getString(PrefNames.CHAMPION.name, ""))
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragmentQuestion2)
         transaction.commit()
-        window.setStatusBarColor(resources.getColor(R.color.yellow_100))
+        window.statusBarColor = resources.getColor(R.color.yellow_100)
     }
 
     override fun openFragmentQuestion4FromFragmentQuestion3(answer: String?) {
-        sharedPref.edit().putString("COLOR", answer).apply()
-        val fragmentQuestion4 = FragmentQuestion4.newInstance(sharedPref.getString("COMPANY", ""))
+        sharedPref.edit().putString(PrefNames.COLOR.name, answer).apply()
+        val fragmentQuestion4 = FragmentQuestion4.newInstance(sharedPref.getString(PrefNames.COMPANY.name, ""))
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragmentQuestion4)
         transaction.commit()
-        window.setStatusBarColor(resources.getColor(R.color.cyan_100))
+        window.statusBarColor = resources.getColor(R.color.cyan_100)
     }
 
     override fun openFragmentQuestion3FromFragmentQuestion4(answer: String?) {
-        sharedPref.edit().putString("COMPANY", answer).apply()
-        val fragmentQuestion3 = FragmentQuestion3.newInstance(sharedPref.getString("COLOR", ""))
+        sharedPref.edit().putString(PrefNames.COMPANY.name, answer).apply()
+        val fragmentQuestion3 = FragmentQuestion3.newInstance(sharedPref.getString(PrefNames.COLOR.name, ""))
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragmentQuestion3)
         transaction.commit()
-        window.setStatusBarColor(resources.getColor(R.color.light_green_100))
+        window.statusBarColor = resources.getColor(R.color.light_green_100)
     }
 
     override fun openFragmentQuestion5FromFragmentQuestion4(answer: String?) {
-        sharedPref.edit().putString("COMPANY", answer).apply()
+        sharedPref.edit().putString(PrefNames.COMPANY.name, answer).apply()
         val fragmentQuestion5 =
-            FragmentQuestion5.newInstance(sharedPref.getString("POPULATION", ""))
+            FragmentQuestion5.newInstance(sharedPref.getString(PrefNames.POPULATION.name, ""))
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragmentQuestion5)
         transaction.commit()
-        window.setStatusBarColor(resources.getColor(R.color.deep_purple_100))
+        window.statusBarColor = resources.getColor(R.color.deep_purple_100)
     }
 
     override fun openFragmentQuestion4FromFragmentQuestion5(answer: String?) {
-        sharedPref.edit().putString("POPULATION", answer).apply()
-        val fragmentQuestion4 = FragmentQuestion4.newInstance(sharedPref.getString("COMPANY", ""))
+        sharedPref.edit().putString(PrefNames.POPULATION.name, answer).apply()
+        val fragmentQuestion4 = FragmentQuestion4.newInstance(sharedPref.getString(PrefNames.COMPANY.name, ""))
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragmentQuestion4)
         transaction.commit()
-        window.setStatusBarColor(resources.getColor(R.color.cyan_100))
+        window.statusBarColor =
+            if (Build.VERSION.SDK_INT >= 23) this.getColor(R.color.cyan_100) else this.resources.getColor(
+                R.color.cyan_100
+            )
     }
 
     override fun openFragmentFinishFromFragmentQuestion5(answer: String?) {
         sharedPref.edit().putString("POPULATION", answer).apply()
         val fragmentFinish = FragmentFinish.newInstance(
-            sharedPref.getString("CAPITAL", ""),
-            sharedPref.getString("CHAMPION", ""),
-            sharedPref.getString("COLOR", ""),
-            sharedPref.getString("COMPANY", ""),
-            sharedPref.getString("POPULATION", "")
+            sharedPref.getString(PrefNames.CAPITAL.name, ""),
+            sharedPref.getString(PrefNames.CHAMPION.name, ""),
+            sharedPref.getString(PrefNames.COLOR.name, ""),
+            sharedPref.getString(PrefNames.COMPANY.name, ""),
+            sharedPref.getString(PrefNames.POPULATION.name, "")
         )
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragmentFinish)
@@ -158,12 +163,13 @@ Your answer: ${sharedPref.getString("POPULATION", "")}"""
 
     override fun repeateFromFragmentFinish() {
         with(sharedPref.edit()) {
-            putString("CAPITAL", "")
-            putString("CHAMPION", "")
-            putString("COLOR", "")
-            putString("COMPANY", "")
-            putString("POPULATION", "")
+            putString(PrefNames.CAPITAL.name, "")
+            putString(PrefNames.CHAMPION.name, "")
+            putString(PrefNames.COLOR.name, "")
+            putString(PrefNames.COMPANY.name, "")
+            putString(PrefNames.POPULATION.name, "")
             apply()
+
         }
         startFragmentQuestion1()
     }
@@ -175,14 +181,13 @@ Your answer: ${sharedPref.getString("POPULATION", "")}"""
     private fun setSharedPreference() {
         sharedPref = getSharedPreferences("mySharedPref", Context.MODE_PRIVATE)
         with(sharedPref.edit()) {
-            putString("CAPITAL", "")
-            putString("CHAMPION", "")
-            putString("COLOR", "")
-            putString("COMPANY", "")
-            putString("POPULATION", "")
+            putString(PrefNames.CAPITAL.name, "")
+            putString(PrefNames.CHAMPION.name, "")
+            putString(PrefNames.COLOR.name, "")
+            putString(PrefNames.COMPANY.name, "")
+            putString(PrefNames.POPULATION.name, "")
             apply()
         }
     }
-
 
 }
